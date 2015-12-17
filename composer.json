@@ -1,0 +1,34 @@
+{
+  "name": "funivan/console",
+  "description": "Improved symfony console",
+  "keywords": [],
+  "homepage": "https://github.com/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ivan Scherbak",
+      "email": "dev@funivan.com",
+      "homepage": "http://funivan.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "symfony/event-dispatcher": "^3.0",
+    "symfony/finder": "^3.0",
+    "symfony/console": "^3.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Funivan\\Console\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Funivan\\Console\\Test\\": "tests"
+    }
+  }
+}
