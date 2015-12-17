@@ -21,6 +21,35 @@ composer require funivan/console
 
 ``` php
 
+
+  use Funivan\Console\CommandsLoader\FileSystemCommandsLoader;
+  use Funivan\Console\NameResolver\StandardNameResolver;
+  use Funivan\Console\SingleState\SingleStateConfigurator;
+
+  $configurator = new \Funivan\Console\ConsoleApplicationConfigurator();
+
+  $dispatcher = new \Symfony\Component\EventDispatcher\EventDispatcher();
+  $configurator->setEventDispatcher($dispatcher);
+
+
+  $finder = new \Symfony\Component\Finder\Finder();
+  $finder->files()->in(__DIR__ . '/commands/')->name('*.php'); # load commands from commands dir
+  
+  # Base namespace is 'Commands'
+  
+  $commandsLoader = (new FileSystemCommandsLoader($finder, new StandardNameResolver('Commands')));
+  $configurator->setCommandsLoader($commandsLoader);
+
+  $singleStateConfigurator = new SingleStateConfigurator();
+  $configurator->setSingleStateConfigurator($singleStateConfigurator);
+
+
+  # configure your app
+  $consoleApp = new \Funivan\Console\ConsoleApplication();
+  $configurator->configure($consoleApp);
+  $consoleApp->run();
+
+
 ```
 
 ## Testing
