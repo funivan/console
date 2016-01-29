@@ -50,12 +50,19 @@
           continue;
         }
 
+        $reflection = new \ReflectionClass($commandClass);
+        if (!$reflection->isInstantiable()) {
+          continue;
+        }
+
+        if (!$reflection->isSubclassOf(Command::class)) {
+          continue;
+        }
+
         $name = $this->commandNameResolver->getNameFromClass($commandClass);
         $command = new $commandClass($name);
 
-        if ($command instanceof Command) {
-          $app->add($command);
-        }
+        $app->add($command);
       }
 
     }
