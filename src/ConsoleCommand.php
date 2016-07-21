@@ -95,7 +95,7 @@
      * @return \Symfony\Component\Console\Command\Command|void
      * @throws \Exception
      */
-    public function setCode($code) {
+    public function setCode(callable $code) {
       throw new \Exception('Command setCode is deprecated');
     }
 
