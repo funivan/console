@@ -81,7 +81,11 @@
         return null;
       }
 
-      $data = file_get_contents($this->pidFile);
+      $data = @file_get_contents($this->pidFile);
+      if (empty($data)) {
+        return null;
+      }
+      
       $data = trim($data);
       $pid = (int) $data;
       if ($pid != $data) {
