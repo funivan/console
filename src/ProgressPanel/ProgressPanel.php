@@ -8,7 +8,7 @@
    * Extended progress bar
    * Progress bar attached to the bottom of the console
    * You can add some data to output by setData method
-   * 
+   *
    * @package Funivan\Console
    * @author Ivan Shcherbak <dev@funivan.com> 2015
    */
@@ -21,6 +21,11 @@
      * @param int $max
      */
     public function __construct(OutputInterface $output, $max = 0) {
+
+      static::setPlaceholderFormatterDefinition('current', function (ProgressBar $bar) {
+        return $bar->getProgress();
+      });
+
       parent::__construct($output, $max);
 
       if ($max === 0) {
