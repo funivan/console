@@ -9,8 +9,7 @@
    * If you invoke setData($message) $message will be displayed
    *  Otherwise all data will be sent to NullOutput
    *
-   * @package Funivan\Console
-   * @author Ivan Shcherbak <dev@funivan.com> 2015
+   * @author Ivan Shcherbak <dev@funivan.com>
    */
   class InlineProgressPanel extends ProgressPanel {
 

@@ -3,8 +3,7 @@
   namespace Funivan\Console\CommandCron;
 
   /**
-   * @package Funivan\Console
-   * @author Ivan Shcherbak <dev@funivan.com> 2015
+   * @author Ivan Shcherbak <dev@funivan.com>
    */
   class GeneralHelpInfo {
 

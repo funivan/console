@@ -9,8 +9,7 @@
    * Progress bar attached to the bottom of the console
    * You can add some data to output by setData method
    *
-   * @package Funivan\Console
-   * @author Ivan Shcherbak <dev@funivan.com> 2015
+   * @author Ivan Shcherbak <dev@funivan.com>
    */
   class ProgressPanel extends \Symfony\Component\Console\Helper\ProgressBar {
 

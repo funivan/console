@@ -11,9 +11,7 @@
   use Symfony\Component\Console\Output\OutputInterface;
 
   /**
-   * Base class for commands
-   *
-   * @package Funivan\Console
+   * @author Ivan Shcherbak <dev@funivan.com>
    */
   class ConsoleCommand extends \Symfony\Component\Console\Command\Command {
 

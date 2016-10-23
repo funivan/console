@@ -8,7 +8,7 @@
   use Symfony\Component\EventDispatcher\EventDispatcher;
 
   /**
-   * @author Ivan Shcherbak <dev@funivan.com> 03.11.15
+   * @author Ivan Shcherbak <dev@funivan.com>
    */
   class ConsoleApplicationConfigurator {
 

@@ -9,8 +9,7 @@
   use Symfony\Component\Finder\SplFileInfo;
 
   /**
-   * @package Funivan\Console
-   * @author Ivan Shcherbak <dev@funivan.com> 2015
+   * @author Ivan Shcherbak <dev@funivan.com>
    */
   class FileSystemCommandsLoader implements CommandsLoaderInterface {
 

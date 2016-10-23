@@ -9,8 +9,7 @@
   use Symfony\Component\EventDispatcher\EventDispatcher;
 
   /**
-   * @package Funivan\Console
-   * @author Ivan Shcherbak <dev@funivan.com> 2015
+   * @author Ivan Shcherbak <dev@funivan.com>
    */
   class SingleStateConfigurator implements ConsoleSingleStateConfiguratorInterface {
 
@@ -27,7 +26,7 @@
           return;
         }
 
-        
+
         $commandState = (new CommandState($command));
         if ($commandState->isAlive()) {
           $event->getOutput()->writeln('Already running: ' . $command->getName() . ' Pid:' . $commandState->getPid());

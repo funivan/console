@@ -8,8 +8,7 @@
    * Command status
    * According to name we check if command is running
    *
-   * @package Funivan\Console
-   * @author Ivan Shcherbak <dev@funivan.com> 2015
+   * @author Ivan Shcherbak <dev@funivan.com>
    */
   class CommandState {
 
@@ -85,7 +84,7 @@
       if (empty($data)) {
         return null;
       }
-      
+
       $data = trim($data);
       $pid = (int) $data;
       if ($pid != $data) {
