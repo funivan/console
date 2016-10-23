@@ -3,10 +3,11 @@
   namespace Funivan\Console\Tests;
 
   use Funivan\Console\ConsoleCommand;
+  use Symfony\Component\Console\Input\ArrayInput;
+  use Symfony\Component\Console\Input\InputInterface;
+  use Symfony\Component\Console\Output\BufferedOutput;
+  use Symfony\Component\Console\Output\OutputInterface;
 
-  /**
-   *
-   */
   class ConsoleCommandTest extends \PHPUnit_Framework_TestCase {
 
 
@@ -34,6 +35,40 @@
       $command->setCode(function () {
         time();
       });
+    }
+
+
+    public function testOutput() {
+      $command = new class extends ConsoleCommand {
+
+        public function __construct($name = null) {
+          $name = $name ? $name : 'test command';
+          parent::__construct($name);
+        }
+
+
+        protected function execute(InputInterface $input, OutputInterface $output) {
+          $output->write('start command');
+        }
+
+      };
+
+      self::assertNull($command->getOutput());
+
+      $output = new BufferedOutput();
+      $output->writeln('start buffer');
+
+      $command->run(new ArrayInput([]), $output);
+
+
+      $output = $command->getOutput();
+      self::assertInstanceOf(BufferedOutput::class, $output);
+      /** @var BufferedOutput $output */
+      $lines = explode("\n", $output->fetch());
+      self::assertSame([
+        'start buffer',
+        'start command',
+      ], $lines);
 
     }
 
