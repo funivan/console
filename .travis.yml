@@ -8,4 +8,7 @@ before_script:
   - travis_retry composer install --no-interaction --prefer-source --dev
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit --coverage-clover=build/coverage.clover
+
+after_script:
+  - php ocular.phar code-coverage:upload --format=php-clover build/coverage.clover
