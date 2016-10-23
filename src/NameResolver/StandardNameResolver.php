@@ -15,6 +15,7 @@
 
     /**
      * @param string $namespace
+     * @throws \InvalidArgumentException
      */
     public function __construct($namespace) {
       if (!is_string($namespace)) {

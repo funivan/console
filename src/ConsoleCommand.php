@@ -4,6 +4,7 @@
 
   use Funivan\Console\ProgressPanel\InlineProgressPanel;
   use Funivan\Console\ProgressPanel\ProgressPanel;
+  use Symfony\Component\Console\Command\Command;
   use Symfony\Component\Console\Input\ArgvInput;
   use Symfony\Component\Console\Input\ArrayInput;
   use Symfony\Component\Console\Input\InputInterface;
@@ -13,17 +14,17 @@
   /**
    * @author Ivan Shcherbak <dev@funivan.com>
    */
-  class ConsoleCommand extends \Symfony\Component\Console\Command\Command {
+  class ConsoleCommand extends Command {
 
     /**
      * @var null|InputInterface
      */
-    private $input = null;
+    private $input;
 
     /**
      * @var null|OutputInterface
      */
-    private $output = null;
+    private $output;
 
 
     /**
@@ -44,13 +45,13 @@
      * @throws \Exception
      */
     protected function getProgressPanel($max = 0) {
-      if (empty($this->getOutput())) {
+      if ($this->getOutput() === null) {
         throw new \Exception('Cant initialize progress panel. Output is undefined');
       }
 
       $input = $this->getInput();
 
-      if ($input and $input->hasOption('run-from-cron') and $input->getOption('run-from-cron')) {
+      if ($input !== null and $input->hasOption('run-from-cron') and $input->getOption('run-from-cron')) {
         return new InlineProgressPanel($this->getOutput(), $max);
       }
 
@@ -68,7 +69,7 @@
       parent::initialize($input, $output);
 
 
-      if ($input->getOption('run-from-cron')) {
+      if ($input !== null and $input->getOption('run-from-cron')) {
         $message = '[run-from-cron] [' . (new \DateTime())->format('Y-m-d H:i:s') . ']';
 
         if ($input instanceof ArgvInput or $input instanceof ArrayInput) {
@@ -90,7 +91,7 @@
      * @deprecated
      *
      * @param callable $code
-     * @return \Symfony\Component\Console\Command\Command|void
+     * @return Command|void
      * @throws \Exception
      */
     public function setCode(callable $code) {

@@ -45,7 +45,7 @@
 
         $commandClass = $this->commandNameResolver->getClassNameFromFile($relCommandFile);
 
-        if ($commandClass === null or !class_exists($commandClass)) {
+        if (!class_exists($commandClass)) {
           continue;
         }
 

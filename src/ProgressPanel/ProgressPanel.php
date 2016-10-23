@@ -12,7 +12,7 @@
    *
    * @author Ivan Shcherbak <dev@funivan.com>
    */
-  class ProgressPanel extends \Symfony\Component\Console\Helper\ProgressBar {
+  class ProgressPanel extends ProgressBar {
 
     /**
      * Configure progress panel
@@ -36,13 +36,11 @@
       $this->setMessage('', 'data');
       $this->setMessage('');
 
-      $this->setPlaceholderFormatterDefinition('itemsPerSecond', function (ProgressBar $bar) {
+      static::setPlaceholderFormatterDefinition('itemsPerSecond', function (ProgressBar $bar) {
 
         $seconds = (time() - $bar->getStartTime());
         $seconds = empty($seconds) ? 1 : $seconds;
-        $display = round($bar->getProgress() / ($seconds)) . ' i/s';
-
-        return $display;
+        return round($bar->getProgress() / $seconds) . ' i/s';
       });
 
     }
@@ -50,6 +48,7 @@
 
     /**
      * @param int $step
+     * @throws \Symfony\Component\Console\Exception\LogicException
      */
     public function setProgress($step) {
       $this->setMessage('', 'data');

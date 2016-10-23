@@ -4,9 +4,7 @@
 
   use Funivan\Console\ConsoleCommand;
   use Symfony\Component\Console\Input\ArrayInput;
-  use Symfony\Component\Console\Input\InputInterface;
   use Symfony\Component\Console\Output\BufferedOutput;
-  use Symfony\Component\Console\Output\OutputInterface;
 
   class ConsoleCommandTest extends \PHPUnit_Framework_TestCase {
 
@@ -32,6 +30,7 @@
     public function testCommandCantNotHaveCustomCode() {
       $command = new ConsoleCommand('test');
       self::assertNotEmpty($command);
+      /** @noinspection PhpDeprecationInspection */
       $command->setCode(function () {
         time();
       });

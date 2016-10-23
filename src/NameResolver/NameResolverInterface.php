@@ -27,4 +27,5 @@
      * @return string
      */
     public function getClassNameFromFile($relCommandFile);
+
   }

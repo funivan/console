@@ -62,8 +62,8 @@
      */
     public function setPid($pid) {
 
-      if (!is_integer($pid)) {
-        throw new \InvalidArgumentException("Invalid pid format. Expect only digits. Pid:" . $pid);
+      if (!is_int($pid)) {
+        throw new \InvalidArgumentException('Invalid pid format. Expect only digits. Pid:' . $pid);
       }
 
       file_put_contents($this->pidFile, $pid);
@@ -88,7 +88,7 @@
       $data = trim($data);
       $pid = (int) $data;
       if ($pid != $data) {
-        throw new \RuntimeException("File corrupted. Invalid pid format. File path:" . $this->getPidFilePath());
+        throw new \RuntimeException('File corrupted. Invalid pid format. File path:' . $this->getPidFilePath());
       }
 
       return $pid;

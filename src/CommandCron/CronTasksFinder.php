@@ -28,7 +28,7 @@
       $tasks = [];
 
       foreach ($application->all() as $command) {
-        $reader = new \DocBlockReader\Reader(get_class($command));
+        $reader = new Reader(get_class($command));
 
         $crontabAnnotations = $annotationFinder($reader);
 
@@ -43,7 +43,7 @@
           array_splice($commandArguments, 0, 5);
 
           $commandArguments = implode(' ', $commandArguments);
-          $preparedExpression = trim(str_replace([" /", $commandArguments], [' */', ''], " " . $crontabExpression));
+          $preparedExpression = trim(str_replace([' /', $commandArguments], [' */', ''], ' ' . $crontabExpression));
           $tasks[] = new CronTaskInfo($preparedExpression, $command, $commandArguments);
 
         }

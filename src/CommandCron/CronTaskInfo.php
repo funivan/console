@@ -2,6 +2,7 @@
 
   namespace Funivan\Console\CommandCron;
 
+  use Cron\CronExpression;
   use Symfony\Component\Console\Command\Command;
 
 
@@ -41,10 +42,10 @@
 
     /**
      * @throws \InvalidArgumentException if not a valid CRON expression
-     * @return \Cron\CronExpression
+     * @return CronExpression
      */
     public function getCronObject() {
-      return \Cron\CronExpression::factory($this->timeExpression);
+      return CronExpression::factory($this->timeExpression);
     }
 
 
