@@ -1,4 +1,5 @@
-<?
+<?php
+
   namespace Funivan\Console\ProgressPanel;
 
   use Symfony\Component\Console\Helper\ProgressBar;
