@@ -14,19 +14,15 @@
 
     /**
      * @param Application $application
-     * @param callback|null $filter
+     * @param callable|null $annotationFinder
      * @return CronTaskInfo[]
      */
-    public function getCronTasks(Application $application, $filter = null) {
+    public function getCronTasks(Application $application, callable $annotationFinder = null) {
 
-      if ($filter === null) {
-        $filter = function (Reader $reader) {
+      if ($annotationFinder === null) {
+        $annotationFinder = function (Reader $reader) {
           return $reader->getParameter('crontab');
         };
-      }
-
-      if (!is_callable($filter)) {
-        throw new \InvalidArgumentException('Invalid filter callback');
       }
 
       $tasks = [];
@@ -34,15 +30,13 @@
       foreach ($application->all() as $command) {
         $reader = new \DocBlockReader\Reader(get_class($command));
 
-        $crontabAnnotations = $filter($reader);
+        $crontabAnnotations = $annotationFinder($reader);
 
         if (empty($crontabAnnotations)) {
           continue;
         }
 
-        if (!is_array($crontabAnnotations)) {
-          $crontabAnnotations = [$crontabAnnotations];
-        }
+        $crontabAnnotations = (array) $crontabAnnotations;
 
         foreach ($crontabAnnotations as $crontabExpression) {
           $commandArguments = preg_split('!\s+!', $crontabExpression, -1, PREG_SPLIT_NO_EMPTY);
@@ -54,7 +48,6 @@
 
         }
       }
-
 
       return $tasks;
     }

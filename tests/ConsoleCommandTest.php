@@ -39,19 +39,7 @@
 
 
     public function testOutput() {
-      $command = new class extends ConsoleCommand {
-
-        public function __construct($name = null) {
-          $name = $name ? $name : 'test command';
-          parent::__construct($name);
-        }
-
-
-        protected function execute(InputInterface $input, OutputInterface $output) {
-          $output->write('start command');
-        }
-
-      };
+      $command = new DummyCommand();
 
       self::assertNull($command->getOutput());
 
