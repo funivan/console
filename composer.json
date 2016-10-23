@@ -14,9 +14,9 @@
   ],
   "require": {
     "php": ">=5.5.0",
-    "symfony/event-dispatcher": "~2.7|~3.0",
+    "symfony/event-dispatcher": "~3.1",
+    "symfony/console": "~3.1",
     "symfony/finder": "~2.7|~3.0",
-    "symfony/console": "~2.7|~3.0",
     "jan-swiecki/simple-annotations": "^0.3.1",
     "mtdowling/cron-expression": "^1.0"
   },
